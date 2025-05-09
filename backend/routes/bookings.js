@@ -4,9 +4,6 @@ const Booking = require("../models/Booking")
 const Event = require("../models/Event")
 const auth = require("../middleware/auth")
 
-// @route   GET /api/bookings/user
-// @desc    Get all bookings for current user
-// @access  Private
 router.get("/user", auth, async (req, res) => {
   try {
     const bookings = await Booking.find({ user: req.user.id }).populate("event").sort({ createdAt: -1 })
@@ -18,9 +15,6 @@ router.get("/user", auth, async (req, res) => {
   }
 })
 
-// @route   POST /api/bookings
-// @desc    Book an event
-// @access  Private
 router.post("/", auth, async (req, res) => {
   try {
     const { eventId } = req.body
@@ -58,9 +52,6 @@ router.post("/", auth, async (req, res) => {
   }
 })
 
-// @route   DELETE /api/bookings/:id
-// @desc    Cancel a booking
-// @access  Private
 router.delete("/:id", auth, async (req, res) => {
   try {
     const booking = await Booking.findById(req.params.id)
