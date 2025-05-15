@@ -10,7 +10,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://event-booking-umber.vercel.app",
+        target: "https://event-booking-aie3.onrender.com" || "http://localhost:8000",
         changeOrigin: true,
         secure: false,
       },
